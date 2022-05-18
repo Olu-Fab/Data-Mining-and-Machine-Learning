@@ -1,0 +1,116 @@
+install.packages("ggplot2")
+library(ggplot2)
+
+#Installing the Cluster Package
+install.packages("cluster")
+library(cluster)
+
+install.packages("factoextra")
+library(factoextra)
+
+install.packages("tidyverse")
+library(tidyverse)
+
+
+Customers <- read.csv("Mall_Customers.csv", header= TRUE)
+Customers
+
+#Inspecting the Data
+names(Customers)
+head(Customers)
+tail(Customers)
+summary(Customers)
+str(Customers)
+
+#Renaming Columns
+Customers <- rename(Customers, Annual.Income = Annual.Income..k.. , Spend.Score = Spending.Score..1.100. , Gender = Genre)
+Customers
+
+#Checking the Dimension
+
+nrow(Customers)
+ncol(Customers)
+dim(Customers)
+
+#Checking for Null Values
+sum(is.na(Customers))
+dev.off()
+
+#Data Exploration and Attribute  Visualization
+attach(Customers) # To attach to the R search path.
+Customers$Gender <- as.factor(Gender)
+str(Customers)
+# Visualization of comparison between gender 
+Genderdf <-as.data.frame(table(Gender))
+ggplot(Genderdf,aes(fill = Gender, x = Gender, y = Freq)) +geom_bar(stat = "identity", position=position_dodge())
+
+
+# Visualization of age distribution
+ggplot(as.data.frame(Age), aes(y = Age)) + geom_boxplot(fill = "#56B4E9")
+
+#Visualizaton of Age Variable
+hist(Age,
+     col="cyan",
+     main="Count of Age by class",
+     xlab="Class of Age",
+     ylab="Frequency",
+     labels=TRUE)
+# Visualization of Annual income
+summary(Annual.Income)
+plot(density(Annual.Income),
+     main="Annual Income Analysis",
+     xlab="Annual.Income",
+     ylab="Density")
+polygon(density(Annual.Income),
+        col="Yellow")
+#Histogram Visualization
+hist(Annual.Income,
+     main="Annual Income Analysis",
+     xlab="Annual,Income",
+     ylab="Frequency",
+     col="orange",
+     labels= TRUE)
+
+# Analysing the spend score
+hist(Spend.Score,
+     main="Spend Score Histogram",
+     xlab="Spend Score Class",
+     ylab="Frequency",
+     col="blue",
+     labels=TRUE)
+# creating a scatter plot matrix to compare the variables
+pairs(Customers)
+# Relationship between the Spend Score and Annual Income
+plot(Annual.Income~ Spend.Score, data = Customers)
+plot(Age~ Spend.Score, data = Customers)
+
+
+
+#Determining the best number of clusters
+kmeans_data <- Customers[,c(4,5)]
+kelbow=sapply(1:15,function(x){kmeans(kmeans_data,x)$tot.withinss})
+plot(1:15,kelbow,main=" Elbow Method for calculating K",xlab="K",ylab="Total 
+Withinss",frame=FALSE,type="b")
+
+
+#Computing the distance Matrix using the Euclidean Distance
+distance <- dist(Customers[1:40, -1],method = "euclidean")
+#Round the distance figures to 3 decimals.
+print(distance,digits=3)
+distance
+
+#Visualise the distance matrix using the fviz_dist() function
+fviz_dist(distance)
+
+km<-kmeans(Customers[,-2],6)
+km
+clusplot(Customers, km$cluster, color=TRUE, shade=TRUE, lines=0)
+
+
+#visualizing using ggplot
+ggplot(Customers, aes(x = Annual.Income, y = Spend.Score)) + 
+  geom_point(stat = "identity", aes(color = as.factor(km$cluster))) +
+  scale_color_discrete(name=" ",
+                       breaks=c("1", "2", "3", "4", "5","6"),
+                       labels=c("Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4", "Cluster 5", "Cluster 6")) +
+  ggtitle("Customers Segmentation")
