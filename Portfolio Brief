@@ -1,6 +1,16 @@
-# Data-Science-Projects
-In this work, R and SAS Enterprise Miner are used to develop a model to forecast customer 
-attrition/churn for a Telecom company using a classification method called the Decision tree. 
-Also, the following questions are addressed by project: What factors play a part in 
-customer churn? Which customers are most likely to abandon their accounts? Is there 
-anything that can be done to keep them from leaving?
+This repository exhibits my understanding and proficiency with data mining techniques 
+such as classification, association rule mining, clustering, and sentiment analysis using actual business data. 
+The datasets were acquired from well-known and legal repositories while adhering to rigorous data protection guidelines 
+and avoiding the use of sensitive data. The datasets were analysed to have a better understanding of their distribution and relationships. 
+Additionally, the results of the model implementation of these techniques were analysed and discussed, with appropriate comments made.
+This study was completed with the aid of two data mining programmes: R and SAS. Both tools 
+were used for analysis and model construction. In this task, the findings of both tools are also 
+compared.
+
+The below Topics were addressed;
+
+##CUSTOMER CHURN PREDICTION FOR A TELECOMS COMPANY USING A DECISION TREEE CLASSIFICATION METHOD
+##CONSUMER BEHAVIOUR AND PATTERNS TO IMPROVE PRODUCT SALES AND STOCK AVAILABILITY IN ONLINE RETAIL USING ASSPCIATION RULE MINING
+##CUSTOMER VALUE MANAGEMENT: SEGMENTATION OF MALL CUSTOMERS INTO HIGH AND LOW VALUE SEGMENTS FOR TARGETED AND PERSONALISED PRODUCT OFFERINGS.
+##SENTIMENT ANALYSIS OF TOURIST REVIEWS ON SELECTED HOTELS IN THAILAND
+
