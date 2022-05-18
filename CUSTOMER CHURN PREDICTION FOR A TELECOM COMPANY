@@ -1,0 +1,6 @@
+# Data-Science-Projects
+In this work, R and SAS Enterprise Miner are used to develop a model to forecast customer 
+attrition/churn for a Telecom company using a classification method called the Decision tree. 
+Also, the following questions are addressed by project: What factors play a part in 
+customer churn? Which customers are most likely to abandon their accounts? Is there 
+anything that can be done to keep them from leaving?
